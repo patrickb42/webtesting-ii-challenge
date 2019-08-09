@@ -13,12 +13,12 @@ function App({ testState }) {
   metrics.push({ label: 'Balls', data: balls });
   metrics.push({ label: 'Strikes', data: strikes });
   
-  const buttons = [];
-
   const resetMetrics = () => {
     setBalls(0);
     setStrikes(0);
   }
+  
+  const buttons = [];
   buttons.push({ label: 'Ball', onClick: () => {
     setBalls((prevState) => {
       const updatedState = prevState + 1;
