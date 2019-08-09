@@ -19,6 +19,7 @@ function App({ testState }) {
     setBalls(0);
     setStrikes(0);
   };
+
   const addOut = () => {
     setForNewBatter();
     setOuts((prevState) => {
