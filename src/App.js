@@ -5,15 +5,19 @@ import './App.css';
 import Display from './components/Display';
 import Dashboard from './components/Dashboard';
 
-function App() {
-  const [balls, setBalls] = useState({
-    label: 'Balls',
-    data: 0,
-  });
-  const [strikes, setStrikes] = useState({
-    label: 'Strikes',
-    data: 0,
-  });
+function App({ testState }) {
+  const [balls, setBalls] = useState((testState && testState.balls)
+    || {
+      label: 'Balls',
+      data: 0,
+    }
+  );
+  const [strikes, setStrikes] = useState((testState && testState.strikes)
+    || {
+      label: 'Strikes',
+      data: 0,
+    }
+  );
 
   const metrics = [balls, strikes];
 
