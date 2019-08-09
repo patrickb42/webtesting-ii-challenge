@@ -10,21 +10,9 @@ describe('testing default components rendered in <App />', () => {
 
   it('renders without crashing', () => {
     expect(getByTestId(/^App$/)).toBeInTheDocument();
-  });
-
-  it('component Display renders to App', () => {
     getByTestId(/^Display$/);
-  });
-
-  it('balls DisplayMetric renders to App', () => {
     getByTestId(/^display-metric-balls$/);
-  });
-
-  it('strikes DisplayMetric renders to App', () => {
     getByTestId(/^display-metric-strikes$/);
-  });
-
-  it('component Display renders to App', () => {
     getByTestId(/^Dashboard$/);
   });
 })

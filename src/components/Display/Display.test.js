@@ -16,10 +16,13 @@ describe('<Display />', () => {
 
   const metrics = [balls, strikes];
 
-  const { getByTestId } = render(<Display metrics={metrics}/>);
-
   it('renders without crashing', () => {
+    const { getByTestId } = render(<Display metrics={metrics}/>);
+
     getByTestId(/^Display$/);
+    metrics.forEach((metric) => {
+      getByTestId(`display-metric-${metric.label.toLowerCase()}`);
+    });
   });
 });
 
