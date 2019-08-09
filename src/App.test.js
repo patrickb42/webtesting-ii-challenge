@@ -1,18 +1,30 @@
 import React from 'react';
-import * as rtl from '@testing-library/react';
+import { render, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
+
 import App from './App';
 
-const app = rtl.render(<App />);
 
-it('renders without crashing', () => {
-  expect(app.getByTestId(/^App$/)).toBeInTheDocument();
-});
+describe('testing default components rendered in App', () => {
+  const { getByTestId } = render(<App />);
 
-it('component Display renders to App', () => {
-  app.getByTestId(/^Display$/);
-});
+  it('renders without crashing', () => {
+    expect(getByTestId(/^App$/)).toBeInTheDocument();
+  });
 
-it('component Display renders to App', () => {
-  app.getByTestId(/^Dashboard$/);
-});
+  it('component Display renders to App', () => {
+    getByTestId(/^Display$/);
+  });
+
+  it('balls DisplayMetric renders to App', () => {
+    getByTestId(/^display-metric-balls$/);
+  });
+
+  it('strikes DisplayMetric renders to App', () => {
+    getByTestId(/^display-metric-strikes$/);
+  });
+
+  it('component Display renders to App', () => {
+    getByTestId(/^Dashboard$/);
+  });
+})

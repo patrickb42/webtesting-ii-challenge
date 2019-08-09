@@ -6,13 +6,20 @@ import Display from './components/Display';
 import Dashboard from './components/Dashboard';
 
 function App() {
+  const [balls, setBalls] = useState({
+    label: 'Balls',
+    data: 0,
+  });
+  const [strikes, setStrikes] = useState({
+    label: 'Strikes',
+    data: 0,
+  });
 
-  const [balls, setBalls] = useState(0);
-  const [strikes, setStrikes] = useState(0);
+  const metrics = [balls, strikes];
 
   return (
     <div data-testid="App" className="App">
-      <Display balls={balls} strikes={strikes} />
+      <Display metrics={metrics} />
       <Dashboard setBalls={setBalls} setStrikes={setStrikes} />
     </div>
   );
