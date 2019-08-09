@@ -17,8 +17,8 @@ metrics.push({ label: 'Strikes', data: strikes });
 metrics.push({ label: 'Outs', data: outs });
 
 const buttons = [];
-buttons.push({ label: 'Ball', onClick: setBalls});
-buttons.push({ label: 'Strike', onClick: setStrikes});
+buttons.push({ label: 'Ball', onClick: () => {}});
+buttons.push({ label: 'Strike', onClick: () => {}});
 
 describe('<Dashboard />', () => {
   const { getByTestId } = render(<Dashboard buttons={buttons} />);
