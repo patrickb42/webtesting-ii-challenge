@@ -6,16 +6,24 @@ import Display from './components/Display';
 import Dashboard from './components/Dashboard';
 
 function App({ testState }) {
-  const [balls, setBalls] = useState((testState && testState.balls.data) || 0);
-  const [strikes, setStrikes] = useState((testState && testState.strikes.data) || 0);
+  const [balls, setBalls] = useState((testState && testState.balls) || 0);
+  const [strikes, setStrikes] = useState((testState && testState.strikes) || 0);
+  const [outs, setOuts] = useState((testState && testState.outs) || 0);
   
   const metrics = [];
   metrics.push({ label: 'Balls', data: balls });
   metrics.push({ label: 'Strikes', data: strikes });
+  metrics.push({ label: 'Outs', data: outs });
   
-  const resetMetrics = () => {
+  const setForNewBatter = () => {
     setBalls(0);
     setStrikes(0);
+  };
+  const addOut = () => {
+    setForNewBatter();
+    setOuts((prevState) => {
+      return (prevState > 1 ? 0 : prevState + 1);
+    });
   }
   
   const buttons = [];
@@ -24,7 +32,7 @@ function App({ testState }) {
       const updatedState = prevState + 1;
       
       if (updatedState > 3) {
-        resetMetrics();
+        setForNewBatter();
       } else {
         return updatedState;
       }
@@ -32,12 +40,10 @@ function App({ testState }) {
   }});
   buttons.push({ label: 'Strike', onClick: () => {
     setStrikes((prevState) => {
-      const updatedState = prevState + 1;
-      
-      if (updatedState > 2) {
-        resetMetrics();
+      if (prevState > 1) {
+        addOut();
       } else {
-        return updatedState;
+        return prevState + 1;
       }
     });
   }});
@@ -52,7 +58,7 @@ function App({ testState }) {
   }});
   buttons.push({ label: 'Hit', onClick: () => {
     setStrikes((prevState) => {
-      resetMetrics();
+      setForNewBatter();
     });
   }});
 
