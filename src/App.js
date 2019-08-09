@@ -9,23 +9,17 @@ function App({ testState }) {
   const [balls, setBalls] = useState((testState && testState.balls.data) || 0);
   const [strikes, setStrikes] = useState((testState && testState.strikes.data) || 0);
   
-  const newMetric = ({ label, data }) => {
-    return { label, data };
-  };
   const metrics = [];
-  metrics.push(newMetric({ label: 'Balls', data: balls }));
-  metrics.push(newMetric({ label: 'Strikes', data: strikes }));
+  metrics.push({ label: 'Balls', data: balls });
+  metrics.push({ label: 'Strikes', data: strikes });
   
-  const newButton = ({ label, onClick }) => {
-    return { label, onClick };
-  }
   const buttons = [];
 
   const resetMetrics = () => {
     setBalls(0);
     setStrikes(0);
   }
-  buttons.push(newButton({ label: 'Ball', onClick: () => {
+  buttons.push({ label: 'Ball', onClick: () => {
     setBalls((prevState) => {
       const updatedState = prevState + 1;
       
@@ -35,8 +29,8 @@ function App({ testState }) {
         return updatedState;
       }
     });
-  }}));
-  buttons.push(newButton({ label: 'Strike', onClick: () => {
+  }});
+  buttons.push({ label: 'Strike', onClick: () => {
     setStrikes((prevState) => {
       const updatedState = prevState + 1;
       
@@ -46,8 +40,8 @@ function App({ testState }) {
         return updatedState;
       }
     });
-  }}));
-  buttons.push(newButton({ label: 'Foul', onClick: () => {
+  }});
+  buttons.push({ label: 'Foul', onClick: () => {
     setStrikes((prevState) => {
       if (prevState > 1) {
         return (prevState);
@@ -55,12 +49,12 @@ function App({ testState }) {
         return prevState + 1;
       }
     });
-  }}));
-  buttons.push(newButton({ label: 'Hit', onClick: () => {
+  }});
+  buttons.push({ label: 'Hit', onClick: () => {
     setStrikes((prevState) => {
       resetMetrics();
     });
-  }}));
+  }});
 
   return (
     <div data-testid="App" className="App">
